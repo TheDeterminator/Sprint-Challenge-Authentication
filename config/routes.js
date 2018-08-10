@@ -11,6 +11,11 @@ module.exports = server => {
   server.get('/api/jokes', authenticate, getJokes);
 };
 
+let token = jwt.sign({
+  something:"who cares"
+}, 'Why can’t banks keep secrets? There are too many tellers!');
+
+
 function register(req, res) {
   // implement user registration
   const user = req.body;
@@ -20,6 +25,7 @@ function register(req, res) {
   if (user.username && user.password) {
     db.insert(user).into('users').then(response => {
       db('users').where('id', response[0]).first().then(result => {
+        result.token = token;
         res.status(201).json(result)
       }).catch(err => {
         console.log('inner error', err);
@@ -30,10 +36,6 @@ function register(req, res) {
     })
   }
 }
-
-let token = jwt.sign({
-  something:"who cares"
-}, 'Why can’t banks keep secrets? There are too many tellers!');
 
 async function login(req, res) {
   // implement user login
