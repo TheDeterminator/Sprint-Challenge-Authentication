@@ -13,7 +13,7 @@ It's important not to confuse this with an encryption. Unlike two-way encryption
 hashing is a one-way function which does not have a key to decode hashed passwords
 back into readable passwords.
 3.  What are the three parts of the JSON Web Token?
-The three parts of a JWT are the header (contains the algirthm and token types),
+The three parts of a JWT are the header (contains the algorithm and token types),
 the payload (contains claims information, such as a user id that we want to send
-  with the JWT) and the signature (A secret attached to the end of the (?) of a
-  base 64 encoded header/payload combination string);
+with the JWT) and the signature (A secret attached to the end (?) of a
+base 64 encoded header/payload combination string).
